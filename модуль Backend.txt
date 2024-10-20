@@ -13,7 +13,6 @@ def get_student_grades(num_students):
             except ValueError:
                 print("Введите корректное числовое значение.")
     return grades
-
 # Функция для анализа оценок
 def analyze_grades(grades):
     avg_grade = sum(grades) / len(grades)  # Средняя оценка
@@ -43,18 +42,13 @@ def main():
                 print("Количество студентов должно быть положительным числом.")
         except ValueError:
             print("Введите корректное целое число.")
-
     grades = get_student_grades(num_students)
-    
     avg_grade, max_grade, min_grade, above_avg_count = analyze_grades(grades)
-    
     print(f"\nСредняя оценка группы: {avg_grade:.1f}")
     print(f"Количество студентов с оценкой выше среднего: {above_avg_count}")
     print(f"Максимальная оценка: {max_grade}")
     print(f"Минимальная оценка: {min_grade}")
-    
     print_recommendation(avg_grade)
-
 # Запуск программы
 if __name__ == "__main__":
     main()
