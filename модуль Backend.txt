@@ -1,0 +1,60 @@
+# Функция для получения оценок студентов
+def get_student_grades(num_students):
+    grades = []
+    for i in range(1, num_students + 1):
+        while True:
+            try:
+                grade = float(input(f'Введите оценку студента {i}: '))
+                if 0 <= grade <= 10:
+                    grades.append(grade)
+                    break
+                else:
+                    print("Оценка должна быть от 0 до 10. Попробуйте снова.")
+            except ValueError:
+                print("Введите корректное числовое значение.")
+    return grades
+
+# Функция для анализа оценок
+def analyze_grades(grades):
+    avg_grade = sum(grades) / len(grades)  # Средняя оценка
+    max_grade = max(grades)  # Максимальная оценка
+    min_grade = min(grades)  # Минимальная оценка
+    above_avg_count = sum(1 for grade in grades if grade > avg_grade)  # Количество студентов с оценками выше среднего
+    
+    return avg_grade, max_grade, min_grade, above_avg_count
+
+# Функция для вывода рекомендаций на основе средней оценки
+def print_recommendation(avg_grade):
+    if avg_grade >= 8:
+        print("Отличная успеваемость!")
+    elif 5 <= avg_grade <= 7:
+        print("Неплохо, но можно лучше.")
+    else:
+        print("Необходимо подтянуть знания.")
+
+# Основная часть программы
+def main():
+    while True:
+        try:
+            num_students = int(input("Введите количество студентов: "))
+            if num_students > 0:
+                break
+            else:
+                print("Количество студентов должно быть положительным числом.")
+        except ValueError:
+            print("Введите корректное целое число.")
+
+    grades = get_student_grades(num_students)
+    
+    avg_grade, max_grade, min_grade, above_avg_count = analyze_grades(grades)
+    
+    print(f"\nСредняя оценка группы: {avg_grade:.1f}")
+    print(f"Количество студентов с оценкой выше среднего: {above_avg_count}")
+    print(f"Максимальная оценка: {max_grade}")
+    print(f"Минимальная оценка: {min_grade}")
+    
+    print_recommendation(avg_grade)
+
+# Запуск программы
+if __name__ == "__main__":
+    main()
